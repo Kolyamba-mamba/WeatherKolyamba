@@ -2,14 +2,15 @@ package com.example.weatherkolyamba.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class Weather(
-    @SerializedName("description")
+    @field:Json(name ="description")
     val description: String,
-    @SerializedName("icon")
+    @field:Json(name ="icon")
     val icon: String,
-    @SerializedName("id")
+    @field:Json(name ="id")
     val id: Int,
-    @SerializedName("main")
+    @field:Json(name ="main")
     val main: String
 )

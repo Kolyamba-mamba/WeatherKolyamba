@@ -2,32 +2,33 @@ package com.example.weatherkolyamba.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class CurrentWeatherResponse(
-    @SerializedName("base")
+    @field:Json(name ="base")
     val base: String,
-    @SerializedName("clouds")
+    @field:Json(name ="clouds")
     val clouds: Clouds,
-    @SerializedName("cod")
+    @field:Json(name ="cod")
     val cod: Int,
-    @SerializedName("coord")
+    @field:Json(name ="coord")
     val coord: Coord,
-    @SerializedName("dt")
+    @field:Json(name ="dt")
     val dt: Int,
-    @SerializedName("id")
+    @field:Json(name ="id")
     val id: Int,
-    @SerializedName("main")
+    @field:Json(name ="main")
     val main: Main,
-    @SerializedName("name")
+    @field:Json(name ="name")
     val name: String,
-    @SerializedName("sys")
+    @field:Json(name ="sys")
     val sys: Sys,
-    @SerializedName("timezone")
+    @field:Json(name ="timezone")
     val timezone: Int,
-    @SerializedName("visibility")
+    @field:Json(name ="visibility")
     val visibility: Int,
-    @SerializedName("weather")
+    @field:Json(name ="weather")
     val weather: List<Weather>,
-    @SerializedName("wind")
+    @field:Json(name ="wind")
     val wind: Wind
 )

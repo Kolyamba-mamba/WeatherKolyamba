@@ -2,10 +2,11 @@ package com.example.weatherkolyamba.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class Coord(
-    @SerializedName("lat")
+    @field:Json(name ="lat")
     val lat: Double,
-    @SerializedName("lon")
+    @field:Json(name ="lon")
     val lon: Double
 )

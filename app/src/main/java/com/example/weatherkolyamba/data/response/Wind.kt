@@ -2,12 +2,13 @@ package com.example.weatherkolyamba.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class Wind(
-    @SerializedName("deg")
+    @field:Json(name ="deg")
     val deg: Int,
-    @SerializedName("gust")
+    @field:Json(name ="gust")
     val gust: Int,
-    @SerializedName("speed")
+    @field:Json(name ="speed")
     val speed: Int
 )

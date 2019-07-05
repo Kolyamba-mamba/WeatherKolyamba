@@ -3,6 +3,7 @@ package com.example.weatherkolyamba.ui
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuPresenter
 import com.example.weatherkolyamba.R
@@ -22,13 +23,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
             val button = findViewById<Button>(R.id.btn)
             val tView = findViewById<TextView>(R.id.txt_result)
-        tView.setText("HEY")
+            val EditText = findViewById<EditText>(R.id.sity)
+            tView.setText("HEY")
             button.setOnClickListener() {
                 println("is work")
-
+            val sityName = EditText.getText().toString()
 
                 val router = WeatherApiService.getRouter()
-                var req = router.getCurrentWeather("Moscow",API_KEY)
+                var req = router.getCurrentWeather(sityName,API_KEY)
                 req.enqueue(object: retrofit2.Callback<CurrentWeatherResponse> {
                     override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
                         println(response.body())
@@ -37,19 +39,8 @@ class MainActivity : AppCompatActivity() {
                             tView.setText("${response.body()}")
 
                         )
-
-//                        val UI = Handler(Looper.getMainLooper())
-//
-//                        UI.run {
-//                            tView.setText(response.body()!!.main.temp.toInt())
-//                        }
-
-
                     }
-
-                    override fun onFailure(call: Call<CurrentWeatherResponse>, t: Throwable) {
-
-                    }
+                    override fun onFailure(call: Call<CurrentWeatherResponse>, t: Throwable) {}
                 })
                 
         }

@@ -2,18 +2,19 @@ package com.example.weatherkolyamba.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class Sys(
-    @SerializedName("country")
+    @field:Json(name ="country")
     val country: String,
-    @SerializedName("id")
+    @field:Json(name ="id")
     val id: Int,
-    @SerializedName("message")
+    @field:Json(name ="message")
     val message: Double,
-    @SerializedName("sunrise")
+    @field:Json(name ="sunrise")
     val sunrise: Int,
-    @SerializedName("sunset")
+    @field:Json(name ="sunset")
     val sunset: Int,
-    @SerializedName("type")
+    @field:Json(name ="type")
     val type: Int
 )

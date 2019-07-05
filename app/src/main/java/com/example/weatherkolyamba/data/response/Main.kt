@@ -2,16 +2,17 @@ package com.example.weatherkolyamba.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 public data class Main(
-    @SerializedName("humidity")
+    @field:Json(name ="humidity")
     val humidity: Int,
-    @SerializedName("pressure")
+    @field:Json(name ="pressure")
     val pressure: Int,
-    @SerializedName("temp")
+    @field:Json(name ="temp")
     val temp: Double,
-    @SerializedName("temp_max")
+    @field:Json(name ="temp_max")
     val tempMax: Double,
-    @SerializedName("temp_min")
+    @field:Json(name ="temp_min")
     val tempMin: Double
 )
