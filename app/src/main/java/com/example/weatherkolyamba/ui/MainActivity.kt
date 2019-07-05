@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-            val button = findViewById<Button>(R.id.btn_search)
+            val button = findViewById<Button>(R.id.btn)
             val tView = findViewById<TextView>(R.id.txt_result)
         tView.setText("HEY")
             button.setOnClickListener() {
@@ -33,11 +33,16 @@ class MainActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
                         println(response.body())
 
-                        val UI = Handler(Looper.getMainLooper())
+                        button.setOnClickListener(
+                            tView.setText("${response.body()}")
 
-                        UI.run {
-                            tView.setText(response.body()!!.main.temp.toInt())
-                        }
+                        )
+
+//                        val UI = Handler(Looper.getMainLooper())
+//
+//                        UI.run {
+//                            tView.setText(response.body()!!.main.temp.toInt())
+//                        }
 
 
                     }
@@ -46,7 +51,12 @@ class MainActivity : AppCompatActivity() {
 
                     }
                 })
+                
         }
 
     }
+}
+
+private fun Button.setOnClickListener(text: Unit) {
+
 }
