@@ -3,7 +3,7 @@ package com.example.weatherkolyamba.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class Main(
+public data class Main(
     @SerializedName("humidity")
     val humidity: Int,
     @SerializedName("pressure")

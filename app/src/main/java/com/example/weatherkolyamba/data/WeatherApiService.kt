@@ -5,6 +5,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -19,35 +20,19 @@ interface WeatherApiService {
 
     @GET("weather")
     fun getCurrentWeather(
-        @Query("q") location: String
-    ): Deferred<CurrentWeatherResponse>
+        @Query("q") location: String,
+        @Query("appid") apiId: String
+    ): Call<CurrentWeatherResponse>
 
-    companion object{
-        val requestInterceptor = Interceptor { chain ->
-            val url = chain.request()
-                .url()
-                .newBuilder()
-                .addQueryParameter("key", API_KEY)
-                .build()
-            val request = chain.request()
-                .newBuilder()
-                .url(url)
+
+    companion object Factory {
+        fun getRouter(): WeatherApiService {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("http://api.openweathermap.org/data/2.5/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-            return@Interceptor chain.proceed(request)
+            return retrofit.create(WeatherApiService::class.java)
         }
-
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(requestInterceptor)
-            .build()
-
-        fun retrofit() : WeatherApiService = Retrofit.Builder()
-            .client(okHttpClient)
-            .baseUrl("http://api.openweathermap.org/data/2.5/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .build()
-            .create(WeatherApiService::class.java)
-
     }
 }
