@@ -8,7 +8,7 @@
               tools:context=".ui.MainActivity">
 
     <EditText
-            android:id="@+id/sity"
+            android:id="@+id/etSity"
             android:inputType="textNoSuggestions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,10 +17,10 @@
     />
 
     <Button
-            android:id="@+id/btn"
+            android:id="@+id/btnViewWether"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View" />
+            android:text="View weather" />
 
 
 
@@ -32,7 +32,7 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
         >
 
@@ -44,7 +44,7 @@
             />
 
             <TextView
-                    android:id="@+id/tmp"
+                    android:id="@+id/tvTmp"
                     android:layout_width="150dp"
                     android:layout_height="30dp"/>
 
@@ -52,7 +52,7 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
         >
 
@@ -64,7 +64,7 @@
             />
 
             <TextView
-                    android:id="@+id/tmpMax"
+                    android:id="@+id/tvTmpMax"
                     android:layout_width="150dp"
                     android:layout_height="30dp"/>
 
@@ -73,10 +73,4 @@
 
     </LinearLayout>
 
-    <!--<TextView-->
-            <!--android:id="@+id/txt_result"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textAlignment="center"-->
-            <!--android:textSize="12sp" />-->
 </LinearLayout>

@@ -33,6 +33,7 @@ interface WeatherApiService {
         fun getRouter(): WeatherApiService {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
 
