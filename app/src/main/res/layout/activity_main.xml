@@ -9,10 +9,11 @@
 
     <EditText
             android:id="@+id/sity"
+            android:inputType="textNoSuggestions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:hint="Enter the sity"
+            android:hint="Enter your sity"
     />
 
     <Button
@@ -22,10 +23,60 @@
             android:text="View" />
 
 
-    <TextView
-            android:id="@+id/txt_result"
+
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="8sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+    >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+        >
+
+            <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:text="Temperature"
+                    android:textSize="14sp"
+            />
+
+            <TextView
+                    android:id="@+id/tmp"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+        >
+
+            <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:text="Temperature MAX"
+                    android:textSize="14sp"
+            />
+
+            <TextView
+                    android:id="@+id/tmpMax"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!--<TextView-->
+            <!--android:id="@+id/txt_result"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAlignment="center"-->
+            <!--android:textSize="12sp" />-->
 </LinearLayout>

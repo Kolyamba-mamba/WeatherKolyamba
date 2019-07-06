@@ -15,13 +15,16 @@ import retrofit2.http.Query
 
 const val API_KEY = "54a4865f9565f4c6e06e17f6b37b3d47"
 const val BASE_URL = "http://api.openweathermap.org/data/2.5/"
-//http://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=54a4865f9565f4c6e06e17f6b37b3d47
+const val UNITS = "metric"
+
+//http://api.openweathermap.org/data/2.5/weather?q=Moscow&units=metric&appid=54a4865f9565f4c6e06e17f6b37b3d47
 
 interface WeatherApiService {
 
     @GET("weather")
     fun getCurrentWeather(
         @Query("q") location: String,
+        @Query("units") units: String,
         @Query("appid") apiId: String
     ): Call<CurrentWeatherResponse>
 
