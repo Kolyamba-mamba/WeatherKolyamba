@@ -8,12 +8,12 @@
               tools:context=".ui.MainActivity">
 
     <EditText
-            android:id="@+id/etSity"
+            android:id="@+id/etCity"
             android:inputType="textNoSuggestions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:hint="Enter your sity"
+            android:hint="Enter your city"
     />
 
     <Button

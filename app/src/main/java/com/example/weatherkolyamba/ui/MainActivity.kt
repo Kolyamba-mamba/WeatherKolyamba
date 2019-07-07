@@ -23,12 +23,12 @@ class MainActivity : AppCompatActivity() {
 
             btnViewWether.setOnClickListener() {
                 println("is work")
-            val sityName = etSity.text.toString()
+            val cityName = etCity.text.toString()
 
                 val router = WeatherApiService.Factory.shared
 
                 CoroutineScope(Dispatchers.IO).launch {
-                    var req = router.getCurrentWeather(sityName, UNITS, LANG, API_KEY)
+                    var req = router.getCurrentWeather(cityName, UNITS, LANG, API_KEY)
                     println(req)
 
                         val tmp = req.main.temp
@@ -36,19 +36,14 @@ class MainActivity : AppCompatActivity() {
                         val Description = req.weather[0].description
                         val WindSpeed = req.wind.speed
 
-
-//                    withContext(Dispatchers.Main) {
-                    btnViewWether.setOnClickListener(
-                            tvTmp.setText("$tmp"),
-                            tvTmpMax.setText("$tmpMax"),
-                            tvDescription.setText(Description),
-                            tvWindSpeed.setText("$WindSpeed m/s")
-                        )
-//                    }
+                    withContext(Dispatchers.Main) {
+                        tvTmp.setText("$tmp")
+                        tvTmpMax.setText("$tmpMax")
+                        tvDescription.setText(Description)
+                        tvWindSpeed.setText("$WindSpeed m/s")
+                    }
                 }
             }
         }
     }
-
-private fun Button.setOnClickListener(text: Unit, text1: Unit, text2: Unit, text3: Unit) {}
 
