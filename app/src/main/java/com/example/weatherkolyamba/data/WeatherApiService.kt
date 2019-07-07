@@ -3,11 +3,7 @@ package com.example.weatherkolyamba.data
 import com.example.weatherkolyamba.data.response.CurrentWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import retrofit2.Call
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,17 +12,19 @@ import retrofit2.http.Query
 const val API_KEY = "54a4865f9565f4c6e06e17f6b37b3d47"
 const val BASE_URL = "http://api.openweathermap.org/data/2.5/"
 const val UNITS = "metric"
+const val LANG = "ru"
 
 //http://api.openweathermap.org/data/2.5/weather?q=Moscow&units=metric&appid=54a4865f9565f4c6e06e17f6b37b3d47
 
 interface WeatherApiService {
 
     @GET("weather")
-    fun getCurrentWeather(
+    suspend fun getCurrentWeather(
         @Query("q") location: String,
         @Query("units") units: String,
+        @Query("lang") lang: String,
         @Query("appid") apiId: String
-    ): Call<CurrentWeatherResponse>
+    ): CurrentWeatherResponse
 
 
     companion object Factory {

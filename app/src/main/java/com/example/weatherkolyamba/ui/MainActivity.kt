@@ -5,12 +5,13 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherkolyamba.R
 import com.example.weatherkolyamba.data.API_KEY
+import com.example.weatherkolyamba.data.LANG
 import com.example.weatherkolyamba.data.UNITS
 import com.example.weatherkolyamba.data.WeatherApiService
-import com.example.weatherkolyamba.data.response.CurrentWeatherResponse
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,26 +25,30 @@ class MainActivity : AppCompatActivity() {
             val sityName = etSity.text.toString()
 
                 val router = WeatherApiService.getRouter()
-                var req =  router.getCurrentWeather(sityName, UNITS ,API_KEY)
-                req.enqueue(object: retrofit2.Callback<CurrentWeatherResponse> {
-                    override fun onResponse(call: Call<CurrentWeatherResponse>, response: Response<CurrentWeatherResponse>) {
-                        println(response.body()?.main?.temp)
 
-                        val tmp = response.body()?.main?.temp
-                        val tmpMax = response.body()?.main?.tempMax
+                CoroutineScope(Dispatchers.IO).launch {
+                    var req = router.getCurrentWeather(sityName, UNITS, LANG, API_KEY)
+                    println(req)
 
-                        btnViewWether.setOnClickListener(
-                            tvTmp.setText("$tmp")
-                        )
+                    val tmp = req.main.temp
+                    val tmpMax = req.main.tempMax
+                    val Description = req.weather[0].description
+                    val WindSpeed = req.wind.speed
 
-                        btnViewWether.setOnClickListener(
-                            tvTmpMax.setText("$tmpMax")
-                        )
-                    }
-                    override fun onFailure(call: Call<CurrentWeatherResponse>, t: Throwable) {}
-                })
+                    btnViewWether.setOnClickListener(
+                        tvTmp.setText("$tmp"),
+                        tvTmpMax.setText("$tmpMax"),
+                        tvDescription.setText("$Description"),
+                        tvWindSpeed.setText("$WindSpeed" + " m/s")
+                    )
+
+                }
+
+            }
         }
     }
+
+private fun Button.setOnClickListener(text: Unit, text1: Unit, text2: Unit, text3: Unit) {
+
 }
 
-private fun Button.setOnClickListener(text: Unit) {}
