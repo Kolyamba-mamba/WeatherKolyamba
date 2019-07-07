@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,31 +25,30 @@ class MainActivity : AppCompatActivity() {
                 println("is work")
             val sityName = etSity.text.toString()
 
-                val router = WeatherApiService.getRouter()
+                val router = WeatherApiService.Factory.shared
 
                 CoroutineScope(Dispatchers.IO).launch {
                     var req = router.getCurrentWeather(sityName, UNITS, LANG, API_KEY)
                     println(req)
 
-                    val tmp = req.main.temp
-                    val tmpMax = req.main.tempMax
-                    val Description = req.weather[0].description
-                    val WindSpeed = req.wind.speed
+                        val tmp = req.main.temp
+                        val tmpMax = req.main.tempMax
+                        val Description = req.weather[0].description
+                        val WindSpeed = req.wind.speed
 
+
+//                    withContext(Dispatchers.Main) {
                     btnViewWether.setOnClickListener(
-                        tvTmp.setText("$tmp"),
-                        tvTmpMax.setText("$tmpMax"),
-                        tvDescription.setText("$Description"),
-                        tvWindSpeed.setText("$WindSpeed" + " m/s")
-                    )
-
+                            tvTmp.setText("$tmp"),
+                            tvTmpMax.setText("$tmpMax"),
+                            tvDescription.setText(Description),
+                            tvWindSpeed.setText("$WindSpeed m/s")
+                        )
+//                    }
                 }
-
             }
         }
     }
 
-private fun Button.setOnClickListener(text: Unit, text1: Unit, text2: Unit, text3: Unit) {
-
-}
+private fun Button.setOnClickListener(text: Unit, text1: Unit, text2: Unit, text3: Unit) {}
 

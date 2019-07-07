@@ -28,14 +28,13 @@ interface WeatherApiService {
 
 
     companion object Factory {
-        fun getRouter(): WeatherApiService {
-            val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .addConverterFactory(MoshiConverterFactory.create())
-                .build()
-
-            return retrofit.create(WeatherApiService::class.java)
+        val shared: WeatherApiService by lazy(LazyThreadSafetyMode.PUBLICATION) {
+            return@lazy getNewRouter().create(WeatherApiService::class.java)
         }
+
+        private fun getNewRouter() = retrofit2.Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
     }
 }
